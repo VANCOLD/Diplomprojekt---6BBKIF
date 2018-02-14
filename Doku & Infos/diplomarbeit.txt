@@ -1,0 +1,129 @@
+
+Grobe Zusammenfassung.
+C++ (QT) ist die Programmiersprache - Library die wir für dieses Projekt nutzen
+XML Files werden für Datenaustausch genutzt (bzw JSON)
+MYSQL wird für die Datenbank genutzt, wir benutzen zusätzlich einen Webserver (apache) und mail server.
+
+C++ connecten mit singal slot zu webanwendung welche angularJS nutz um daten verarbeiten zu lassen bzw zu ändern (diese ändern dann die website)
+bzw man könnte versuchen die APP in das interface einzubauen.
+
+Serversitige Applikation zur Ansteuerung von Clients
+(Clients sind PCs auf denen die backupsoftware installiert ist)
+
+
+Server kann XML files an Clients schicken, diese führen dann Backups basierend auf den XML Files durch
+Diese XML Files können verschiedene Directories am PC enthalten, Dateiendungen und Speicher Methode (Dropbox, GDrive, ICloud)
+
+
+Der Server dient als Managment programm das die Clients (mit user und passwort;) anspricht und Ihnen Aufgaben zuteilt (Backupaufgaben)
+Diese Aufgaben sind wie oben schon erwähnt im XML Format und geben auskunft wohin und was gespeichert werden soll.
+
+
+Die Clients haben die einfache Aufgabe die XML Files auszuwerten und je nachdem zu agieren.
+Sie können dauerhaft ein backup machen, d.h wenn neue Files generiert werden die in die Suchmaske reinfallen, werden diese auf der spezifizierten Platform gespeichert,
+oder nur auf Aufgaben / tasks warten und sonst keine Backups machen, oder auch erst ab einer bestimmten Uhrzeit.
+Das wird den Client eben über den Server mitgeteilt.
+
+Client ist in diesem Zusammenhang passiv und hört nur zu, außer er authetifiziert sich beim Server, oder bei etwaigen Fehlermeldungen.
+Der Client schickt Ordnerstruktur an den Server sobald die authentifizierung erfolgt ist, und bei backups werden nur updates geschickt (damit der Server uptodate ist)
+Server ist der aktive, der Befehle und Abfragen macht und überprüft ob alles passt. 
+Der Server soll ein Interface haben welches die Clients zeigt und dessen Ordner Struktur. 
+Der User kann dann Ordner auswählen und Backup-Masken (Sozusagen welche Datein gespeichert werden sollen, oder welche Unterordner nicht)
+Soll so ähnlich wie Dropbox interface aussehen.
+
+
+
+Eine Datenbank wäre von nutzen, diese hätte aber ein nicht so großes ausmaß.
+Als Software hierfür würden wir MYSQL nutzen
+In diesem Fall eine user-tabelle mit Zugangsdaten und User-Client-List-Id
+Die Client-List-Id wird benutzt um auf die User-Client-List zuzugreifen.
+Diese Client-List beinhaltet alle Clients die der User authentifiziert hat.
+Clients werden in der Clients-Tabelle gespeichert (daweil nur Windows)
+
+User 1 - 1 User-Client-List  1 - n Clients
+
+Clients enthalten eine Referenz (Pfad) zur Ordner Struktur. Diese ist vorhanden auf dem Server, besteht aus Ordneren und Meta-Daten (pro ordner; XML?)
+Diese werden dann ausgelesen und angezeigt auf dem Webinterface.
+Abhängig vom User werden verschiedenste Directories angezeigt, das wird durch die Datenbank gesteuert.
+
+
+
+
+
+
+
+
+
+Arbeitspakete:
+
+Client Server Anmeldung 
+- Clients schicken Anmeldungen an Server.
+ -> Speichert Client in DB, und erstellt Relationen
+ -> Unterprogramm legt Ordnerstruktur an
+ -> Kommunikationskanal wird aufgebaut (d.h ip-speicherung, ect ect)
+ -> Überprüft ob User valid ist
+
+Client Server Kommunikationskanal
+- Clients und Server tauschen Daten aus für Backups
+ -> Server schickt XML Tasks an Client
+ -> Server kann auch XML Tasks speichern und warten bis Client sich meldet (task-que)
+ -> Server kommuniziert mit Cloud-Service; Teilt userdaten Client mit (Pro Task)
+ -> Server trägt Updates in die Client Ordnerstruktur ein
+ -> Bei Fehler und Probleme sollten einige Mechanismen überlegt werden
+ 
+ 
+Client Programm
+- Das Hauptprogramm, welches Backups vorbereitet und Aufgaben empfängt.
+ -> Soll Server XMLs empfangen können und richtig verarbeiten
+ -> Default-modus soll richtig funktionieren
+ -> Server mitteilen wenn sich was ändert, bzw etwas nicht passt
+ -> Files an Could-Service schicken
+  --> Kommunikation mit GDrive
+  --> Kommunikation mit ICloud
+  --> Kommunikation mit DBox
+ 
+
+Client Anmelde-Programm
+- Programm das Client spiegelt und diese Daten an den Server weitergibt
+ -> Backup-Tree sollte gespiegelt werden
+ -> Schickt diese Daten mit User an Server
+ 
+
+Server Webinterface
+- Managament System; Wird genutzt um Tasks an zugewiesenen Clients (des Users) zu verteilen und zu verwalten.
+ -> Tasks and User-Clients zuweißen
+ -> Statusberichte
+ -> Kommunikation mit Cloud-Services
+  --> Registrierung der User der Cloud-Service (also sozusagen ein Link zw. App und Cloudserver für einfacheren Zugriff)
+  --> Datenmanagment auf Cloud-Service (Wenn kein Platz, doppelte Elemente ect)
+ -> Löschen oder Ändern von Default Backups
+ -> Entfernen von Clients (falls nötig)
+ -> Abfrage der Struktur für Ordner (d.h man kann interaktiv auf der Weboberfläche wie im Explorer Ordner aussuchen
+  --> Ordner werden als richtige Struktur am Server abgeblidet
+  --> Clients sind im User-Client-List gespeichert (dieses hat den pfad zu der "physikalischen" Ordnerstruktur
+  --> Queries an DB schicken
+
+
+Präsentation vorbereiten
+- Präsentation des Projekts
+ -> Name einfallen lassen
+ -> Logo
+ -> Maybe catch phrase
+ -> Power Point
+ -> Speech selbst 
+
+Datenbank
+- Erstellung der DB und testung auf Fehler
+ -> Erstellen
+ -> Fehlersuche
+ -> Testdaten einfüllen (das müssen einige sein
+ 
+  
+Dokumentation
+- Dokumentieren des projets nach "PMI" Standard sozusagen
+
+Beta-Testing
+- Herz und Nieren des Programms testen
+ -> Test-Routinen erstellen
+ -> Debug-Testing
+  

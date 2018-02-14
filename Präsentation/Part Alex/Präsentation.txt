@@ -1,0 +1,34 @@
+bisher erledigt*
+
+	Webinterface
+
+		Design
+			Login Screen mit Nutzer + Passwort
+   			Hauptinterface mit Menu und Content Box
+   			App indem Durchsuchen und Hinzufügen von Ordner möglich sein soll
+
+		Technik
+			Kommunikation mit Server App
+			Kommunikation mit Datenbank
+			Interface für das Exploren von Files	
+
+		Grafik
+			Mögliche Vorschläge für das Projekt-Logo
+			Erstellung von Icons, die für die Daten und Ordner verwendet werden
+			Standardbild für das Profil, wenn kein Bild angegeben
+	
+	Datenbank
+		
+		Erstellen der Datenbank für das Speichern der Login-Daten
+			
+		
+
+Schematischer Aufbau der Kommunikation von Webinterface mit Datenbank und Server-App. 
+
+
+
+noch anstehend*
+
+	Programmierung der Server-App
+	
+	Webinterface für mobile Version
