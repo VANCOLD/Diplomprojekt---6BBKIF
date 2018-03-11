@@ -11,6 +11,8 @@ class RequestMapper : public HttpRequestHandler {
 public:
     RequestMapper(QObject* parent=0,HttpListener* myListener = 0);
     void service(HttpRequest& request, HttpResponse& response);
+    virtual ~RequestMapper();
+
 
 private:
     HttpListener* myListener;

@@ -13,6 +13,7 @@ public:
     JSonController(QObject* parent=0);
     void service(HttpRequest& request, HttpResponse& response);
     void setListener(HttpListener* myListener);
+    virtual ~JSonController();
 
 private:
     HttpListener* myListener;

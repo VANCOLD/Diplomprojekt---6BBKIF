@@ -8,6 +8,11 @@ RequestMapper::RequestMapper(QObject* parent, HttpListener* myListener)
         this->myListener = myListener;
 }
 
+RequestMapper::~RequestMapper()
+{
+    delete this->myListener;
+}
+
 void RequestMapper::service(HttpRequest& request, HttpResponse& response) {
     QByteArray path=request.getPath();
     qDebug("RequestMapper: path=%s",path.data());

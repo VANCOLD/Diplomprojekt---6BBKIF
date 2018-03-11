@@ -71,6 +71,13 @@ int main(int argc, char *argv[])
 
     HttpListener* myListener = new HttpListener(listenerSettings, new RequestMapper(&app,myListener), &app);
 
+    Communicator mycomm;
+
+    qDebug("mycomm created");
+
+    QObject::connect(myListener, SIGNAL(signaltowaitandsend()), &mycomm, SLOT(wait_and_send()));
+
+    qDebug("connected slot to signal");
 
     return app.exec();
 }

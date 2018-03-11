@@ -12,6 +12,7 @@
 #include <QUrl>
 #include <QDebug>
 
+
 class Communicator : public QObject
 {
     Q_OBJECT
@@ -28,6 +29,8 @@ public:
 signals:
 
 public slots:
+
+    void wait_and_send();
 };
 
 #endif // COMMUNICATOR_H

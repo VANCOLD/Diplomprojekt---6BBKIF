@@ -8,6 +8,10 @@ JSonController::JSonController(QObject* parent)
     // empty
 }
 
+JSonController::~JSonController()
+{
+    delete this->myListener;
+}
 
 void JSonController::setListener(HttpListener* myListener) {
     this->myListener = myListener;
@@ -26,7 +30,8 @@ void JSonController::service(HttpRequest &request, HttpResponse &response) {
                 if (jsonobj.value(QString("password")) == QJsonValue("testpassword1"))
                 {    response.write("authentication successful", true);
 
-                   myListener->listen();
+                   emit myListener->signaltowaitandsend();
+                    qDebug("signal emitted");
                 }
                 else response.write("wrong password", true);
             }

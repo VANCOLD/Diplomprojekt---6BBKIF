@@ -6,6 +6,27 @@ Communicator::Communicator(QObject *parent) : QObject(parent)
 
 }
 
+void Communicator::wait_and_send()
+{
+    //QTest::qWait(1000);
+    request = QNetworkRequest(QUrl("http://localhost:8081/json"));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+
+    json.insert("type", QJsonValue("debug"));
+
+    reply = nam.post(request, QJsonDocument(json).toJson());
+    qDebug() << "debug JSON geschickt";
+
+    while(!reply->isFinished())
+    {
+        qApp->processEvents();
+    }
+    qDebug() << "Antwort erhalten";
+
+    qDebug() << QString("").append(reply->readAll());
+    qDebug() << "Fertig!";
+}
+
 bool Communicator::authenticate(QString username, QString password, QByteArray *response_data)
 {
      request = QNetworkRequest(QUrl("http://localhost:8080/json"));
