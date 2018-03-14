@@ -17,6 +17,10 @@ public:
 
 private:
     HttpListener* myListener;
+
+
+signals:
+    void jsigwait();
 };
 
 #endif // JSONCONTROLLER_H

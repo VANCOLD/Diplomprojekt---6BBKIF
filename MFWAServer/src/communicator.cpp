@@ -9,6 +9,7 @@ Communicator::Communicator(QObject *parent) : QObject(parent)
 void Communicator::wait_and_send()
 {
     //QTest::qWait(1000);
+    qDebug() << "entered wait_and_send()";
     request = QNetworkRequest(QUrl("http://localhost:8081/json"));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 

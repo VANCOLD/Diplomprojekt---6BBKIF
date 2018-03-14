@@ -75,9 +75,11 @@ int main(int argc, char *argv[])
 
     qDebug("mycomm created");
 
-    QObject::connect(myListener, SIGNAL(signaltowaitandsend()), &mycomm, SLOT(wait_and_send()));
+    bool signalslotconnected = QObject::connect(myListener, SIGNAL(signaltowaitandsend()), &mycomm, SLOT(wait_and_send()));
 
-    qDebug("connected slot to signal");
+    if (signalslotconnected)
+        qDebug("connected slot to signal");
+    else qDebug("connecting slot to signal failed");
 
     return app.exec();
 }

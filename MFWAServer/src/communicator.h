@@ -28,7 +28,7 @@ public:
 
 signals:
 
-public slots:
+private slots:
 
     void wait_and_send();
 };
