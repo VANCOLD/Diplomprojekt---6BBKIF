@@ -11,7 +11,7 @@ void someotherclass::wait_and_send()
 
     this->socket = new QTcpSocket(this);
 
-    this->socket->connectToHost(QHostAddress::LocalHost, 1235);
+    this->socket->connectToHost(QHostAddress::LocalHost, 10235);
 
     if(socket->waitForConnected(5000))
     {
