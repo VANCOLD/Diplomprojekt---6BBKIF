@@ -10,10 +10,12 @@ class MyThread : public QThread
 public:
     MyThread(int ID, QObject *parent = 0);
     void run();
+    int getsocketdescriptor();
+    QTcpSocket* getQTcpSocket();
 
 signals:
     void error(QTcpSocket::SocketError socketerror);
-    void signaltowaitandsend();
+    void signaltowaitandsend(int clientport);
 
 public slots:
     void readyRead();

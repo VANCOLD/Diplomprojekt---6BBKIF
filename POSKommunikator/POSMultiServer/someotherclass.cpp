@@ -5,13 +5,17 @@ someotherclass::someotherclass(QObject *parent) : QObject(parent)
 
 }
 
-void someotherclass::wait_and_send()
+void someotherclass::wait_and_send(int clientport)
 {
     //QTest::qWait(1000);
 
+
+
+    /*
+
     this->socket = new QTcpSocket(this);
 
-    this->socket->connectToHost(QHostAddress::LocalHost, 10235);
+    this->socket->connectToHost(QHostAddress::LocalHost, clientport);
 
     if(socket->waitForConnected(5000))
     {
@@ -30,4 +34,6 @@ void someotherclass::wait_and_send()
         qDebug() << "waitandsend Couldn't connect!";
     }
 
+
+    */
 }

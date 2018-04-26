@@ -14,6 +14,9 @@ public:
     void StartServer();
     virtual ~MyServer();
 
+    QVector<MyThread*> threadlist;
+    void senduserstring(int userint, QString userstring);
+
 signals:
 
 public slots:

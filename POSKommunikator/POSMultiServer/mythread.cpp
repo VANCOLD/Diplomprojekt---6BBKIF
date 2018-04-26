@@ -25,6 +25,11 @@ void MyThread::run()
     exec();
 }
 
+int MyThread::getsocketdescriptor()
+{
+    return this->socketDescriptor;
+}
+
 void MyThread::readyRead()
 {
     QByteArray Data = socket->readAll();
@@ -43,17 +48,30 @@ void MyThread::readyRead()
                 {
                     socket->write("authentication successful");
 
-                   emit signaltowaitandsend();
+                   emit signaltowaitandsend(jsonobj.value(QString("clientport")).toInt());
                    qDebug("signaltowaitandsend emitted");
                 }
                 else socket->write("wrong password");
             }
             else socket->write("unknown user");
         }
+        else if (jsonobj.value(QString("type")) == QJsonValue("userstring"))
+        {
+            socket->write("userstring successfully received");
+            if (jsonobj.value(QString("userstring")) == QJsonValue("quit"))
+            {
+                this->disconnected();
+            }
+        }
         else socket->write("Warning: Received JSon of unknown type");
     }
     else socket->write("Warning: Received JSon without \"type\" key");
 }
+
+QTcpSocket* MyThread::getQTcpSocket() {
+    return this->socket;
+}
+
 
 void MyThread::disconnected()
 {

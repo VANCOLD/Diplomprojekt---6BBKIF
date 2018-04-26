@@ -1,11 +1,13 @@
 #include "myserver.h"
 
+#define CLIENTPORT 12345
+
 MyServer::MyServer(QObject *parent) : QObject(parent)
 {
     server = new QTcpServer(this);
     connect(server, SIGNAL(newConnection()), this, SLOT(newConnection()));
 
-    if(!server->listen(QHostAddress::Any, 10235))
+    if(!server->listen(QHostAddress::Any, CLIENTPORT))
     {
         qDebug() << "Server could not start!";
     }

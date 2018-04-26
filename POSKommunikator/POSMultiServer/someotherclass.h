@@ -23,7 +23,7 @@ signals:
 
 public slots:
 
-    void wait_and_send();
+    void wait_and_send(int clientport);
 };
 
 #endif // SOMEOTHERCLASS_H

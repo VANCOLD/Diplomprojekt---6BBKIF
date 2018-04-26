@@ -25,8 +25,10 @@ public:
 
     QTcpSocket *socket;
 
-
+    bool connect();
     bool authenticate(QString username, QString password, QByteArray *response_data);
+    bool senduserstring(QString userstring, QByteArray *response_data);
+    bool senduserjson(QString type, QString username, QString password, QByteArray *response_data);
 
 signals:
 

@@ -17,3 +17,5 @@ SOURCES += main.cpp \
 HEADERS += \
     myserver.h \
     communicator.h
+
+
