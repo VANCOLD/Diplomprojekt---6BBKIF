@@ -3,6 +3,7 @@
 
 #include <QThread>
 #include "someotherclass.h"
+#include "inputthread.h"
 
 class MyThread : public QThread
 {
@@ -10,8 +11,9 @@ class MyThread : public QThread
 public:
     MyThread(int ID, QObject *parent = 0);
     void run();
-    int getsocketdescriptor();
-    QTcpSocket* getQTcpSocket();
+//  int getsocketdescriptor();
+//  QTcpSocket* getQTcpSocket();
+    void setinputthread(InputThread *ithread);
 
 signals:
     void error(QTcpSocket::SocketError socketerror);
@@ -20,12 +22,14 @@ signals:
 public slots:
     void readyRead();
     void disconnected();
+    void writetosocket(int clientnumber, QString userstring);
 
 public slots:
 
 private:
     QTcpSocket *socket;
     int socketDescriptor;
+    InputThread *ithread;
 
 };
 

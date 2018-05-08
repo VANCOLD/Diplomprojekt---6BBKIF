@@ -9,12 +9,17 @@ void MyServer::setobject(someotherclass *someobject)
 {
     this->someobject = someobject;
 }
+void MyServer::setinputthread(InputThread *ithread)
+{
+    this->ithread = ithread;
+}
+
 
 MyServer::~MyServer()
 {
     delete this->someobject;
 }
-
+/*
 void MyServer::senduserstring(int userint, QString userstring)
 {
     //QVector<MyThread*>::iterator i =
@@ -32,7 +37,7 @@ void MyServer::senduserstring(int userint, QString userstring)
     }
 
 }
-
+*/
 void MyServer::StartServer()
 {
     if(!this->listen(QHostAddress::Any, 1234))
@@ -50,7 +55,8 @@ void MyServer::incomingConnection(int socketDescriptor)
     //clientlist.contains(socketDescriptor) <----------------------------hier gehts weiter
     qDebug() << socketDescriptor << "Connecting...";
     MyThread *thread = new MyThread(socketDescriptor, this);
-    threadlist.append(thread);
+    thread->setinputthread(this->ithread);
+    //threadlist.append(thread);
     connect (thread, SIGNAL(finished()), thread, SLOT(deleteLater()));
     connect (thread, SIGNAL(signaltowaitandsend(int)), this->someobject, SLOT(wait_and_send(int)));
     thread->start();

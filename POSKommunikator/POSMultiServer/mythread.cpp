@@ -17,6 +17,9 @@ void MyThread::run()
         return;
     }
 
+    qDebug() << "before connecting gotinput to writesocket";
+    connect(this->ithread, SIGNAL(gotinput(int /*clientnumber*/, QString /*userstring*/)), this, SLOT(writetosocket(int /*clientnumber*/, QString /*userstring*/)));
+    qDebug() << "after connecting gotinput to writesocket";
     connect(socket, SIGNAL(readyRead()), this, SLOT(readyRead()), Qt::DirectConnection);
     connect(socket, SIGNAL(disconnected()), this, SLOT(disconnected()), Qt::DirectConnection);
 
@@ -25,11 +28,26 @@ void MyThread::run()
     exec();
 }
 
+void MyThread::setinputthread(InputThread *ithread)
+{
+    this->ithread = ithread;
+}
+
+void MyThread::writetosocket(int clientnumber, QString userstring)
+{
+    if(this->socketDescriptor == clientnumber)
+    {
+        QByteArray tempContent(userstring.toUtf8());
+        socket->write(tempContent);
+        socket->waitForBytesWritten(1000);
+    }
+}
+/*
 int MyThread::getsocketdescriptor()
 {
     return this->socketDescriptor;
 }
-
+*/
 void MyThread::readyRead()
 {
     QByteArray Data = socket->readAll();
@@ -67,11 +85,11 @@ void MyThread::readyRead()
     }
     else socket->write("Warning: Received JSon without \"type\" key");
 }
-
+/*
 QTcpSocket* MyThread::getQTcpSocket() {
     return this->socket;
 }
-
+*/
 
 void MyThread::disconnected()
 {

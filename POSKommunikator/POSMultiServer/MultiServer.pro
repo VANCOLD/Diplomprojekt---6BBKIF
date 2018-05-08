@@ -14,9 +14,13 @@ TEMPLATE = app
 SOURCES += main.cpp \
     myserver.cpp \
     mythread.cpp \
-    someotherclass.cpp
+    someotherclass.cpp \
+    inputthread.cpp
+
 
 HEADERS += \
     myserver.h \
     mythread.h \
-    someotherclass.h
+    someotherclass.h \
+    inputthread.h
+
