@@ -10,7 +10,7 @@ class MyServer : public QObject
 {
     Q_OBJECT
 public:
-    explicit MyServer(QObject *parent = 0);
+    explicit MyServer(QObject *parent = 0, int port = 12345);
 
 signals:
 
@@ -19,6 +19,7 @@ public slots:
 
 private:
     QTcpServer *server;
+    int port;
 };
 
 #endif // MYSERVER_H

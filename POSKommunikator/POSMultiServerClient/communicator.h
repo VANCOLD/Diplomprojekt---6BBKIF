@@ -25,6 +25,9 @@ public:
 
     QTcpSocket *socket;
 
+    int port;
+
+    void setport(int port);
     bool connect();
     bool authenticate(QString username, QString password, QByteArray *response_data);
     bool senduserstring(QString userstring, QByteArray *response_data);

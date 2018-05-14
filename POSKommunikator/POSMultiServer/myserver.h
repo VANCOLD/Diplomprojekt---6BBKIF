@@ -3,8 +3,7 @@
 
 #include <QTcpServer>
 #include "mythread.h"
-#include "someotherclass.h"
-#include "inputthread.h"
+
 
 class MyServer : public QTcpServer
 {

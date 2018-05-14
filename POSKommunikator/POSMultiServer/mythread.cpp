@@ -17,9 +17,12 @@ void MyThread::run()
         return;
     }
 
+    /*
     qDebug() << "before connecting gotinput to writesocket";
-    connect(this->ithread, SIGNAL(gotinput(int /*clientnumber*/, QString /*userstring*/)), this, SLOT(writetosocket(int /*clientnumber*/, QString /*userstring*/)));
+    connect(this->ithread, SIGNAL(gotinput(int, QString)), this, SLOT(writetosocket(int, QString)));
     qDebug() << "after connecting gotinput to writesocket";
+    */
+
     connect(socket, SIGNAL(readyRead()), this, SLOT(readyRead()), Qt::DirectConnection);
     connect(socket, SIGNAL(disconnected()), this, SLOT(disconnected()), Qt::DirectConnection);
 

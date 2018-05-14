@@ -24,6 +24,7 @@ signals:
 public slots:
 
     void wait_and_send(int clientport);
+    void sendtoclient(int clientport, QString userstring); //hier weiter. vlt als slot von inputthread aufrufen lassen
 };
 
 #endif // SOMEOTHERCLASS_H

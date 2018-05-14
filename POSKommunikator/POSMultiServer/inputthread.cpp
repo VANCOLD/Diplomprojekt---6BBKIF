@@ -1,6 +1,7 @@
 #include "inputthread.h"
 #include <iostream>
 #include <string>
+#include <QDebug>
 
 QString getustring(QString displaystring)
 {
@@ -23,14 +24,15 @@ void InputThread::setserver(MyServer *server)
 void InputThread::run()
 {
     QString userstring = "";
-    int userint = 1;
+    int port = 1;
 
-    while (userint != 0)
+    while (port != 0)
     {
-        userint = getustring(QString("bitte nummer des clients eingeben: ")).toInt();
+        qDebug() << "Test";
+        port = getustring(QString("bitte port des clients eingeben: ")).toInt();
         userstring = getustring(QString("bitte nachricht eingeben: "));
         //this->server->senduserstring(userint, userstring);
-        emit gotinput(userint, userstring);
+        emit gotinput(port, userstring);
 
     }
 }

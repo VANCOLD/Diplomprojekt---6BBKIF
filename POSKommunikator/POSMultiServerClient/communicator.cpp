@@ -8,6 +8,11 @@ Communicator::Communicator(QObject *parent) : QObject(parent)
 
 }
 
+void Communicator::setport(int port)
+{
+    this->port = port;
+}
+
 bool Communicator::connect()
 {
     socket = new QTcpSocket(this);
@@ -67,8 +72,7 @@ bool Communicator::senduserstring(QString userstring, QByteArray *response_data)
      json.insert("type", QJsonValue("userstring"));
      json.insert("ID",QJsonValue("1"));
      json.insert("userstring", QJsonValue(userstring));
-     json.insert("clientport", QJsonValue(CLIENTPORT));  //CLIENTPORT ist als konstante definiert
-
+     json.insert("clientport", QJsonValue(this->port));
      socket->write(QJsonDocument(json).toJson());
 
      socket->waitForBytesWritten(1000);
@@ -98,7 +102,7 @@ bool Communicator::authenticate(QString username, QString password, QByteArray *
      json.insert("type", QJsonValue("authentication"));
      json.insert("username", QJsonValue(username));
      json.insert("password", QJsonValue(password));
-     json.insert("clientport", QJsonValue(CLIENTPORT));  //CLIENTPORT ist im .pro-file als konstante definiert
+     json.insert("clientport", QJsonValue(this->port));
 
      socket->write(QJsonDocument(json).toJson());
 

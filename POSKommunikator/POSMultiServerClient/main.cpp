@@ -16,8 +16,12 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
+    int port = getustring(QString("Please enter port to listen on: ")).toInt();
+
     QByteArray response;
     Communicator mycomm;
+
+    mycomm.setport(port);
 
     MyServer * mServer = NULL;
 
@@ -30,7 +34,7 @@ int main(int argc, char *argv[])
 
         if (response == QByteArray("authentication successful")) //wenn authentifizierung beim server erfolgreich war -> auf message von server warten
         {
-            mServer = new MyServer(); //client startet "seinen eigenen server" um zu lauschen
+            mServer = new MyServer(NULL, port); //client startet "seinen eigenen server" um zu lauschen
 
             QString type = getustring(QString("Please enter \"reg\" or \"auth\": "));
             QString username = getustring(QString ("Please enter username: "));
