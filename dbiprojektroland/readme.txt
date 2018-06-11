@@ -1,0 +1,1 @@
+infos fuer import: datenbankname ist "musicmanager", collectionname ist "songs".
