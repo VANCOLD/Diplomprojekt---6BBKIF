@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="de" >
+
+	<head>
+	  <meta charset="UTF-8">
+	  <title>Startseite</title>
+	  <link rel="stylesheet" href="css/style.css">
+	</head>
+
+	<body>
+		<div class="last">
+			<div class="form">
+				<ul class="tab-group">
+					<li class="tab active"><a href="#login">Anmeldung</a></li>
+					<li class="tab"><a href="#signup">Registrierung</a></li>
+				</ul>
+			  
+				<div class="tab-content">
+
+					<div id="login">   
+					  
+						<form action="/" method="post">
+					  
+							<div class="field-wrap">
+								<label>Email<span class="req">*</span></label>
+								<input type="email"required autocomplete="off"/>
+							</div>
+					  
+							<div class="field-wrap">
+								<label>Passwort<span class="req">*</span></label>
+								<input type="password"required autocomplete="off"/>
+							</div>
+							
+							<p class="forgot">
+								<a href="#">Passwort vergessen?</a>
+							</p>
+					  
+							<button class="button button-block"/>Anmelden</button>
+					  
+						</form>
+					</div> 
+					
+					
+					<div id="signup">  
+						<form action="/" method="post">
+				  
+							<div class="top-row">						
+								<div class="field-wrap">
+									<label>Vorname<span class="req">*</span></label>
+									<input type="text" required autocomplete="off" />
+								</div>
+				
+								<div class="field-wrap">
+									<label>Nachname<span class="req">*</span></label>
+									<input type="text"required autocomplete="off"/>
+								</div>
+								
+							</div>
+
+							<div class="field-wrap">
+								<label>Email<span class="req">*</span></label>
+								<input type="email"required autocomplete="off"/>
+							</div>
+				  
+							<div class="field-wrap">
+								<label>Passwort<span class="req">*</span></label>
+								<input type="password"required autocomplete="off"/>
+							</div>
+				  
+							<button type="submit" class="button button-block"/>Registrieren</button>
+				  
+						</form>
+					</div>
+					
+				</div><!-- tab-content -->    
+			</div> <!-- /form -->
+			
+			<div class="img-container">
+				<img src="gallery/favicon.png" width="300px" alt="logo">
+			</div>
+		</div>
+	
+		<script src='js/jquery.min.js'></script>
+		<script  src="js/index.js"></script>
+
+	</body>
+</html>
