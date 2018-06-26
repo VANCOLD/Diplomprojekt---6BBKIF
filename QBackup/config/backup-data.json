@@ -1,0 +1,12 @@
+{
+
+	"qdirnode": 
+	{
+		"name"		: "First Backup",
+		"dest"  	: "test",
+		"saveType"  : "dbox",
+		"dPath" 	: "J:\\",
+		"excluded"	: "",
+		"filter"	: "*.mid;*.gp5"
+	}
+}
